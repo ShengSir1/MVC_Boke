@@ -1,0 +1,60 @@
+﻿/*图片*/
+dl.album-item {
+    width: 160px;
+    height: 270px;
+    float: left;
+    margin: 10px 30px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+    dl.album-item dd {
+        margin: 0;
+        padding: 0 10px;
+    }
+
+dt.album-img {
+    width: 158px;
+    height: 150px;
+}
+
+    dt.album-img img {
+        width: 160px;
+        height: 150px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+dd.album-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    /*这里要显示的设置宽度*/
+    overflow: hidden;
+    white-space: nowrap;
+    /*文字超出宽度则显示ellipsis省略号*/
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+dd.album-singer {
+    font-size: 0.9em;
+    color: #808080;
+}
+
+dd.album-price {
+    font-size: 0.9em;
+    color: #94eb47;
+}
+/*页签*/
+.PhotoList {
+    position: relative;
+    bottom: -680px;
+    left: -740px;
+    overflow: hidden;
+}
+
+.album {
+    height: 700px;
+}

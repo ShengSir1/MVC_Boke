@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>空间</title>
+    <link rel="stylesheet" href="../css/Space.css">
+    <link rel="stylesheet" href="/Content/css/Space.css">
+    <link href="~/Content/css/photo.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="/Content/css/bootstrap.min.css">
+
+</head>
+<body>
+    <!-- 菜单 -->
+    <div class="nav">
+        <div class="navImg">
+            <img src="/Content/Image/logo-210x70-m.png" alt="" onclick="location.href='/Home/Index'">
+        </div>
+        <div class="nav_info">
+            <ul>
+                <li><a href="/Release/Index"><i></i>写文章</a></li>
+                <li><a href="/Space/Index"><img src="@ViewBag.userInfo.img" alt="" class="handImg"></a></li>
+                <li style="padding: 0px" class="MyName">
+                    <a href="">@ViewBag.userInfo.name</a>
+                    <div class="UserMove">
+                        <ul>
+                            <li><a href="/Space/UserSet">个人设置</a></li>
+                            <li><a href="/Home/LogOut">退出账号</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!-- 空间图片区域 -->
+    <div class="ImgBox">
+        <img src="@ViewBag.userInfo.cover" alt="">
+        <div class="ImgBox_UInfo">
+            <ul>
+                <li><img src="@ViewBag.userInfo.img" alt=""></li>
+                <li class="ImgBox_UInfo_Name">@ViewBag.userInfo.name</li>
+                <li class="ImgBox_UInfo_Text">@ViewBag.userInfo.sign</li>
+            </ul>
+        </div>
+    </div>
+    <!-- 内容区域 -->
+    <div class="Content">
+        <div class="ContentNavBox">
+            <div class="ContentNav">
+                <ul>
+                    <li class="ContentFirstItem"><a href="">相册</a></li>
+                </ul>
+            </div>
+            <!-- 单个相册展示 -->
+
+            <div class="ContentList album">
+                @foreach (var item in (ViewBag.Albums as List<Blog.Models.album>))
+                    {
+                        <dl class="album-item">
+                            <dt class="album-img">
+                                <img src="@item.path" />
+                            </dt>
+                            <dd class="album-title">
+                                @item.title
+                            </dd>
+                        </dl>
+                    }
+            </div>
+            @* 上传照片 *@
+            @*<div class="InfoBox">
+                <form action="/PhotoAlbums/AddPhoto" method="post" enctype="multipart/form-data">
+                    <table class="UpTable">
+                        <tr>
+                            <td><input type="file" name="file" id="" value="上传图片"></td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="确认上传" class="InfoSave" />
+                </form>
+                <img src="@ViewBag.PhotoPath.path" alt="照片预览" />
+            </div>*@
+        </div>
+        <div class="PhotoList">
+            <!-- 分页 -->
+            <nav aria-label="Page navigation" style="text-align: center;">
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    @for (int i = 0; i < ViewBag.PageCount; i++)
+                    {
+                        <li><a href="/Space/Index/@i">@(i + 1)</a></li>
+                    }
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="ContentRight">
+            <div class="HotArticles">
+                <div class="HotTitle">
+                    <h3>相册簿</h3>
+                </div>
+                <div class="ArticlesList">
+                    @foreach (var item in ViewBag.userPhotoAlbum as List<Blog.Models.PhotoAlbum>)
+                    {
+                        <a href="/PhotoAlbum/Index?pid=@item.id">
+                            <span>@item.albumName</span>
+                            <span>@item.albumTitle</span>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(".MyName").mousemove(function () {
+            $(".UserMove").css("display", "block")
+        })
+        $(".MyName").mouseout(function () {
+            $(".UserMove").css("display", "none")
+        })
+        $(".UserMove").mouseout(function () {
+            $(this).css("display", "none")
+        })
+    </script>
+</body>
+</html>
