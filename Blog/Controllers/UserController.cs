@@ -26,6 +26,7 @@ namespace Blog.Controllers
                 if (db.SaveChanges() > 0)
                 {
                     code = 200;
+
                     message = "修改成功";
                 }
                 return Json(new { code = code, message = message });
